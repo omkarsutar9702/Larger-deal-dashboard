@@ -24,7 +24,7 @@ df_final = df1[[ 'Exchange', 'Sector', 'Quntity', 'price', 'Value (Cr)','Time', 
 ## sort values by Quntity
 top10 = df_final.sort_values(by=['Value (Cr)'] , ascending=False)
 ## create table
-st.markdown("<h3 style='text-align: center;'>Today's top 10 Deals</h3>", unsafe_allow_html=True)
+st.markdown("<h3 style='text-align: center;'>Today's top 20 Deals</h3>", unsafe_allow_html=True)
 st.table(top10.head(20) )
 ##get filterd data
 options = df_final['Sector'].unique().tolist()
