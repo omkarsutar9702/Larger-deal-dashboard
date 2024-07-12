@@ -4,7 +4,7 @@ import plotly.express as px
 
 st.set_page_config(page_title="Large Deals In Stocks", layout="wide", page_icon="📈")
 
-@st.cache_data(ttl=600)  # Cache data for 10 minutes to avoid redundant requests
+@st.cache(ttl=600)  # Cache data for 10 minutes to avoid redundant requests
 def load_data():
     url = "https://www.moneycontrol.com/stocks/marketstats/blockdeals/"
     df_list = pd.read_html(url)
