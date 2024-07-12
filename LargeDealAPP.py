@@ -28,16 +28,17 @@ df['Value (Cr)'] = df['Value (Cr)'].astype(str)
 df['Company Name'] = df['Company Name'].str.split("Add", n=1, expand=True)[0]
 
 # Select relevant columns
-df = df[['Exchange', 'Sector', 'Quantity', 'Price', 'Value (Cr)', 'Time', 'Company Name']]
+df = df[['Sector', 'Quantity', 'Price', 'Value (Cr)', 'Time', 'Company Name']]
 
 # Convert relevant columns to numeric
 df['Quantity'] = pd.to_numeric(df['Quantity'].str.replace(',', ''), errors='coerce')
 df['Price'] = pd.to_numeric(df['Price'].str.replace(',', ''), errors='coerce')
 df['Value (Cr)'] = pd.to_numeric(df['Value (Cr)'].str.replace(',', ''), errors='coerce')
 
+
 # Display top 20 deals
 st.markdown("<h3 style='text-align: center;'>Today's Top 20 Deals</h3>", unsafe_allow_html=True)
-top_20_deals = df.nlargest(20, 'Value (Cr)')
+top_20_deals = df.nlargest(10, 'Value (Cr)')
 st.table(top_20_deals)
 
 # Filter data by sector
