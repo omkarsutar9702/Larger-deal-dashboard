@@ -42,11 +42,15 @@ top_20_deals = df.nlargest(10, 'Value (Cr)')
 st.table(top_20_deals)
 
 # Filter data by sector
-sectors = df['Sector'].unique().tolist()
-selected_sectors = st.multiselect('Select the Sectors you want to see', sectors)
-filtered_df = df[df['Sector'].isin(selected_sectors)].sort_values(by='Value (Cr)', ascending=False)
-st.markdown("<h3 style='text-align: center;'>Sector Wise Deals</h3>", unsafe_allow_html=True)
-st.dataframe(filtered_df, use_container_width=True)
+try:
+    sectors = df['Sector'].unique().tolist()
+    selected_sectors = st.multiselect('Select the Sectors you want to see', sectors)
+    filtered_df = df[df['Sector'].isin(selected_sectors)].sort_values(by='Value (Cr)', ascending=False)
+    st.markdown("<h3 style='text-align: center;'>Sector Wise Deals</h3>", unsafe_allow_html=True)
+    st.dataframe(filtered_df, use_container_width=True)
+except Exception as e:
+    st.error(f"Error filtering data by sector: {e}")
+
 
 # Plot top 20 sectors
 st.markdown("<h3 style='text-align: center;'>Today's Top Sectors</h3>", unsafe_allow_html=True)
